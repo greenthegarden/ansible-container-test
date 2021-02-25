@@ -1,0 +1,31 @@
+---
+
+- name: test container
+  hosts: all
+
+  tasks:
+
+    - name: run container
+      community.docker.docker_container:
+        name: mypython
+        image: python:3.9
+        interactive: yes
+
+    - name: add container to inventory
+      add_host:
+        name: mypython
+        ansible_connection: docker
+      changed_when: false
+
+    - name: run things in container
+      block:
+        - name: run command in container
+          command: date
+          # delegate_to: mypython
+
+        - name: Install package
+          ansible.builtin.package:
+            name: ntpdate
+            state: present
+          # delegate_to: mypython
+      delegate_to: mypython
