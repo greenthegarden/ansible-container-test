@@ -1,0 +1,17 @@
+---
+
+roles:
+  - name: geerlingguy.pip
+    scm: git
+    src: https://github.com/geerlingguy/ansible-role-pip.git
+    version: origin/master
+
+
+collections:
+  - name: https://github.com/ansible-collections/amazon.aws.git
+    type: git
+    version: 8102847014fd6e7a3233df9ea998ef4677b99248
+
+  - name: https://github.com/ansible-collections/community.general.git
+    type: git
+    
